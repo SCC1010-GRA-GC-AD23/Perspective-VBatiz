@@ -1,17 +1,26 @@
-function preload() {
-  // put preload code here
-}
-
+//drag the mouse to look around!
 function setup() {
-  // put setup code here
-  createCanvas(800,800, WEBGL)
+  createCanvas(400, 400, WEBGL);
+  perspective(PI / 3.0, width / height, 0.1, 500);
+  describe(
+    'two colored 3D boxes move back and forth, rotating as mouse is dragged.'
+  );
 }
-
 function draw() {
-  // put drawing code here
-  background(255)
-  rotateX(frameCount * 0.01)
-  rotateY(frameCount * 0.01)
-  rotateZ(frameCount * 0.01)
-  box(150)
+  background(200);
+  orbitControl();
+  normalMaterial();
+
+  rotateX(-0.3);
+  rotateY(-0.2);
+  translate(0, 0, -50);
+
+  push();
+  translate(-15, 0, sin(frameCount / 30) * 95);
+  box(30);
+  pop();
+  push();
+  translate(15, 0, sin(frameCount / 30 + PI) * 95);
+  box(30);
+  pop();
 }
